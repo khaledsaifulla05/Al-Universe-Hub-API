@@ -26,7 +26,7 @@ const displayTools = allTools => {
         <h2 class="card-title mt-4 text-2xl">${tools.name}</h2>
           <div class="card-actions items-center justify-between mt-4">
           <h3 class = "font-semibold text-xl">${tools.published_in}</h3>
-            <button class="btn btn-primary">Buy Now</button>
+            <button onclick = "showDetails('${tools.id}')"><i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
         `;
@@ -34,4 +34,11 @@ const displayTools = allTools => {
         toolsContainer.appendChild(toolsCard)
     })
 }
+
+const showDetails = async (id) =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
+    const data = await res.json();
+    console.log(data);
+}
+
 hubApi();
